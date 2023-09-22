@@ -1,27 +1,30 @@
+import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:order_it/components/my_button.dart';
 import 'package:order_it/components/my_textfield.dart';
 import 'package:order_it/components/square_tile.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
 
   final Function()? onTap;
 
-  LoginPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+
   //TEXT EDITING CONTROLLERS
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   //SIGN USERS IN METHOD
-  void signUserIn() async{
+  void signUserUp() async{
 
     //SHOW LOADING CIRCLE
     showDialog(
@@ -35,12 +38,22 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    //TRY SIGN IN
+    //TRY CREATING THE USER
     try{
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      //CHECK IF PASSWORD IS CONFIRMED
+      if(passwordController.text == confirmPasswordController.text){
+
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+
         email: emailController.text, 
         password: passwordController.text
-      );
+        );
+
+      }else{ //SHOW ERROR MESSAGE
+
+        showErrorMessage("Las contraseñas no son iguales");
+      }
+
       //POP THE CIRCLE
       Navigator.pop(context);
 
@@ -95,9 +108,10 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.grey[900],
                 ),
                 const SizedBox(height: 50),
-          
+
+                //CREATE ACCOUNT MESSAGE
                 Text(
-                  "¡Bienvenido! Te echábamos de menos",
+                  "¡Bienvenido! Puede crear una cuenta aquí",
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 16,
@@ -106,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
           
                 const SizedBox(height: 25),
-          
+
+                //EMAIL TEXTFIELD
                 MyTextField(
                   controller: emailController,
                   hintText: "Email",
@@ -114,38 +129,31 @@ class _LoginPageState extends State<LoginPage> {
                 ),
           
                 const SizedBox(height: 10),
-          
+
+                //PASSWORD TEXTFIELD
                 MyTextField(
                   controller: passwordController,
                   hintText: "Contraseña",
                   obscureText: true,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "¿Has olvidado tu contraseña?",
-                        style: TextStyle(
-                          color: Colors.grey[600]
-                        ),
-                      ),
-                    ],
-                  ),
+                //CONFIRM PASSWORD TEXTFIELD
+                MyTextField(
+                  controller: confirmPasswordController,
+                  hintText: "Confirma la Contraseña",
+                  obscureText: true,
                 ),
+
           
                 const SizedBox(height: 25),
           
                 MyButton(
-                  onTap: signUserIn,
-                  text: "Iniciar Sesión",
+                  onTap: signUserUp,
+                  text: "Regístrate",
                 ),
           
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
           
                 Row(
                   children: [
@@ -173,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
           
-                const SizedBox(height: 50),
+                const SizedBox(height: 35),
           
                 //GOOGLE AND APPLE SIGN IN BUTTONS
                 Row(
@@ -190,14 +198,14 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
           
-                const SizedBox(height: 50),
+                const SizedBox(height: 35),
           
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
           
                     Text(
-                      "¿No eres miembro?",
+                      "¿Ya tienes una cuenta?",
                       style: TextStyle(
                         color: Colors.grey[700]
                       ),
@@ -208,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        "Regístrate ahora",
+                        "Inicia sesión ahora",
                         style: TextStyle(
                           color: Colors.green, 
                           fontWeight: FontWeight.bold

@@ -24,11 +24,14 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body:  Center(
-        child: Text(
-          "¡ Has iniciado sesión como: ${user?.email} !",
-          style: const TextStyle(
-            fontSize: 20
+      body:  Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Center(
+          child: Text(
+            "¡ Has iniciado sesión como: ${user?.email} !",
+            style: const TextStyle(
+              fontSize: 20
+            ),
           ),
         ),
       ),

@@ -101,13 +101,13 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
                 Icon(
                   Icons.fastfood_rounded,
                   size: 100,
                   color: Colors.grey[900],
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
 
                 //CREATE ACCOUNT MESSAGE
                 Text(
@@ -153,7 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   text: "Regístrate",
                 ),
           
-                const SizedBox(height: 40),
+                const SizedBox(height: 25),
           
                 Row(
                   children: [
@@ -181,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
           
-                const SizedBox(height: 35),
+                const SizedBox(height: 25),
           
                 //GOOGLE AND APPLE SIGN IN BUTTONS
                 Row(
@@ -198,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
           
-                const SizedBox(height: 35),
+                const SizedBox(height: 25),
           
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

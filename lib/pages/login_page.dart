@@ -88,13 +88,13 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
                 Icon(
                   Icons.fastfood_rounded,
                   size: 100,
                   color: Colors.grey[900],
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 25),
           
                 Text(
                   "¡Bienvenido! Te echábamos de menos",
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   text: "Iniciar Sesión",
                 ),
           
-                const SizedBox(height: 50),
+                const SizedBox(height: 35),
           
                 Row(
                   children: [
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
           
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
           
                 //GOOGLE AND APPLE SIGN IN BUTTONS
                 Row(
@@ -190,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
           
-                const SizedBox(height: 50),
+                const SizedBox(height: 25),
           
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

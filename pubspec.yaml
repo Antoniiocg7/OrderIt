@@ -1,17 +1,19 @@
 name: order_it
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ">=2.19.6 <3.0.0"
 
 dependencies:
+  cloud_firestore: ^4.0.1
   firebase_auth: ^4.10.0
   firebase_core: ^2.16.0
   flutter:
     sdk: flutter
   google_sign_in: ^6.1.5
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -23,3 +25,4 @@ flutter:
 
   assets:
     - lib/images/
+    - lib/assets/

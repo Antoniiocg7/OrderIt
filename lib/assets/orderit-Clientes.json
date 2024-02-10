@@ -1,0 +1,62 @@
+[
+  {
+    "correo": "juan@example.com",
+    "direccion": "Calle Principal 123",
+    "nombre": "Juan Pérez",
+    "telefono": "555-1234"
+  },
+  {
+    "correo": "maria@example.com",
+    "direccion": "Avenida Secundaria 456",
+    "nombre": "María García",
+    "telefono": "555-5678"
+  },
+  {
+    "correo": "carlos@example.com",
+    "direccion": "Calle Central 789",
+    "nombre": "Carlos Rodríguez",
+    "telefono": "555-9876"
+  },
+  {
+    "correo": "laura@example.com",
+    "direccion": "Plaza Principal 987",
+    "nombre": "Laura Martínez",
+    "telefono": "555-4321"
+  },
+  {
+    "correo": "javier@example.com",
+    "direccion": "Avenida Central 654",
+    "nombre": "Javier Hernández",
+    "telefono": "555-8765"
+  },
+  {
+    "correo": "ana@example.com",
+    "direccion": "Calle Secundaria 321",
+    "nombre": "Ana Sánchez",
+    "telefono": "555-2109"
+  },
+  {
+    "correo": "pedro@example.com",
+    "direccion": "Calle Principal 543",
+    "nombre": "Pedro López",
+    "telefono": "555-3456"
+  },
+  {
+    "correo": "carmen@example.com",
+    "direccion": "Avenida Secundaria 876",
+    "nombre": "Carmen Flores",
+    "telefono": "555-6789"
+  },
+  {
+    "correo": "roberto@example.com",
+    "direccion": "Plaza Central 234",
+    "nombre": "Roberto Torres",
+    "telefono": "555-1098"
+  },
+  {
+    "correo": "sofia@example.com",
+    "direccion": "Avenida Principal 876",
+    "nombre": "Sofía Díaz",
+    "telefono": "555-7654"
+  }
+]

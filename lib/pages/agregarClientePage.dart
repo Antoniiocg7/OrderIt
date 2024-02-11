@@ -22,7 +22,7 @@ class _AgregarClientePageState extends State<AgregarClientePage> {
         title: const Text('Agregar Cliente'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(36.0),
+        padding: const EdgeInsets.all(76.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -51,7 +51,7 @@ class _AgregarClientePageState extends State<AgregarClientePage> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
                     vertical: 5,
-                    horizontal: 80), // Ajustar el tamaño del botón
+                    horizontal: 8), // Ajustar el tamaño del botón
               ),
               child: const Text('Guardar'),
             ),

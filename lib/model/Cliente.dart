@@ -2,14 +2,12 @@ import 'dart:convert';
 
 class Cliente {
   Cliente({
-
     required this.nombre,
     required this.correo,
     required this.direccion,
     required this.telefono,
   });
 
-  
   String nombre;
   String correo;
   String direccion;
@@ -33,8 +31,18 @@ class Cliente {
         'telefono': telefono,
       };
 
-      
-
-
-
+  Cliente copyWith({
+    String? id,
+    String? nombre,
+    String? correo,
+    String? direccion,
+    String? telefono,
+  }) {
+    return Cliente(
+      nombre: nombre ?? this.nombre,
+      correo: correo ?? this.correo,
+      direccion: direccion ?? this.direccion,
+      telefono: telefono ?? this.telefono,
+    );
+  }
 }

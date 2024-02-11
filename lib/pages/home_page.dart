@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:order_it/model/Cliente.dart';
 import 'package:order_it/services/ClientService.dart';
-import '../services/firebase_service.dart';
 import 'agregarClientePage.dart';
+import 'modificarClientePage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -12,8 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseService firebaseService = FirebaseService();
-  late List<Cliente> listaClientes = [];
+  late List<Cliente> _listaClientes = [];
 
   @override
   void initState() {
@@ -24,17 +23,31 @@ class _HomePageState extends State<HomePage> {
   void cargarClientes() async {
     List<Cliente> clientes = await ClientService().cargarClientes();
     setState(() {
-      listaClientes = clientes;
+      _listaClientes = clientes;
     });
   }
 
-   void abrirInterfazAgregarCliente() {
+  void _abrirInterfazAgregarCliente() {
     // Navegar a la página para agregar un nuevo cliente
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AgregarClientePage()),
+      MaterialPageRoute(builder: (context) => const AgregarClientePage()),
     ).then((value) {
       // Actualizar la lista de clientes si se agrega uno nuevo
+      if (value == true) {
+        cargarClientes();
+      }
+    });
+  }
+
+  void _abrirModificarCliente(Cliente cliente) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ModificarClientePage(cliente: cliente),
+      ),
+    ).then((value) {
+      // Actualizar la lista de clientes si se realizan cambios
       if (value == true) {
         cargarClientes();
       }
@@ -58,50 +71,46 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-     body: Padding(
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Row(
-                children: [ 
-                  const Text(
-                "Lista de Clientes",
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                const Text(
+                  "Lista de Clientes",
+                  style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                const SizedBox(width: 80),
+                IconButton(
+                  onPressed: () => _abrirInterfazAgregarCliente(),
+                  icon: const Icon(Icons.add_circle_outline_sharp),
+                )
+              ],
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _listaClientes.length,
+                itemBuilder: (context, index) {
+                  Cliente cliente = _listaClientes[index];
+                  return GestureDetector(
+                    onTap: () {
+                      _abrirModificarCliente(cliente);
+                    },
+                    child: ListTile(
+                      title: Text(cliente.nombre),
+                      subtitle: Text(cliente.correo),
+                    ),
+                  );
+                },
               ),
-
-              const SizedBox(width: 80),
-              IconButton(
-                onPressed: () => abrirInterfazAgregarCliente(),
-                icon: const Icon(Icons.add_circle_outline_sharp),
-              )
-
-                ],
-
-              ),
-              
-              const SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: listaClientes.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(listaClientes[index].nombre, style: const TextStyle( fontSize: 28 ),),
-                      subtitle: Text(
-                          '${listaClientes[index].correo} - ${listaClientes[index].telefono}'),
-                      // Puedes agregar más detalles aquí según tus necesidades
-                    );
-                  },
-                ),
-              ),
-
-            ],
-          ),
+            ),
+          ]),
         ),
       ),
     );
